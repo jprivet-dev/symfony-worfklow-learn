@@ -22,10 +22,10 @@ help: ## Outputs this help screen
 build: ## Builds the Docker images
 	@$(DOCKER_COMP) build --pull --no-cache
 
-up: ## Start the docker hub in detached mode (no logs)
-	@$(DOCKER_COMP) up --detach
+up: ## Start the docker hub
+	@$(DOCKER_COMP) up
 
-start: build up ## Build and start the containers
+start: up ## Start the containers
 
 stop: down ## alias of down
 
@@ -58,4 +58,10 @@ cc: c=c:c ## Clear the cache
 cc: sf
 
 ## —— Workflow ✔️ ———————————————————————————————————————————————————————————————
+
+
+## —— Troubleshooting 😵‍️ ————————————————————————————————————————————————————————
+
+permissions: ## Run it if you work on linux and cannot edit some of the project files
+	docker-compose run --rm php chown -R $$(id -u):$$(id -g) .
 
