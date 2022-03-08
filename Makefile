@@ -61,17 +61,16 @@ cc: sf
 
 ## —— Workflow ✔️ ———————————————————————————————————————————————————————————————
 
-dot: ##
-	@$(eval c ?=)
-	$(DOT) $(c)
-
 dump_workflow: ## Generate a visual representation of the workflow as SVG image
 	@$(eval name ?=)
 	$(SYMFONY) workflow:dump $(name) | $(DOT) -Tsvg -o dump/dump_$(name).svg
 
 dump_blog_publishing: ## Generate a visual representation of the workflow as SVG image
-	$(MAKE) dump_workflow name="blog_publishing"
+	$(MAKE) dump_workflow name=blog_publishing
 
+dot: ## Dot command
+	@$(eval c ?=)
+	$(DOT) $(c)
 
 ## —— Troubleshooting 😵‍️ ———————————————————————————————————————————————————————
 
