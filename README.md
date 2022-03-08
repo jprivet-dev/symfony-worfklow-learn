@@ -15,6 +15,7 @@
 * https://github.com/symfony/workflow
 * Tutoriel Symfony : Le composant Workflow de symfony - https://www.youtube.com/watch?v=1Iu8evzKmF4
 * Un Workflow de pro avec Symfony 5 ! : https://www.youtube.com/watch?v=GcasBn8iAY4
+* https://graphviz.org/
 
 ### Autres
 
