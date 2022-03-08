@@ -3,11 +3,13 @@ DOCKER_COMP = docker-compose
 
 # Docker containers
 PHP_CONT = $(DOCKER_COMP) exec php
+PHP_RUN = $(DOCKER_COMP) run php
 
 # Executables
 PHP      = $(PHP_CONT) php
 COMPOSER = $(PHP_CONT) composer
 SYMFONY  = $(PHP_CONT) bin/console
+DOT      = $(PHP_RUN) dot
 
 # Misc
 .DEFAULT_GOAL = help
@@ -42,7 +44,7 @@ sh: ## Connect to the PHP FPM container
 
 composer: ## Run composer, pass the parameter "c=" to run a given command, example: make composer c='req symfony/orm-pack'
 	@$(eval c ?=)
-	@$(COMPOSER) $(c)
+	$(COMPOSER) $(c)
 
 vendor: ## Install vendors according to the current composer.lock file
 vendor: c=install --prefer-dist --no-dev --no-progress --no-scripts --no-interaction
@@ -52,15 +54,26 @@ vendor: composer
 
 sf: ## List all Symfony commands or pass the parameter "c=" to run a given command, example: make sf c=about
 	@$(eval c ?=)
-	@$(SYMFONY) $(c)
+	$(SYMFONY) $(c)
 
 cc: c=c:c ## Clear the cache
 cc: sf
 
 ## —— Workflow ✔️ ———————————————————————————————————————————————————————————————
 
+dot: ##
+	@$(eval c ?=)
+	$(DOT) $(c)
 
-## —— Troubleshooting 😵‍️ ————————————————————————————————————————————————————————
+dump_workflow: ## Generate a visual representation of the workflow as SVG image
+	@$(eval name ?=)
+	$(SYMFONY) workflow:dump $(name) | $(DOT) -Tsvg -o dump/dump_$(name).svg
+
+dump_blog_publishing: ## Generate a visual representation of the workflow as SVG image
+	$(MAKE) dump_workflow name="blog_publishing"
+
+
+## —— Troubleshooting 😵‍️ ———————————————————————————————————————————————————————
 
 permissions: ## Run it if you work on linux and cannot edit some of the project files
 	docker-compose run --rm php chown -R $$(id -u):$$(id -g) .

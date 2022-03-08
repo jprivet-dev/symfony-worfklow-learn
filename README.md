@@ -9,10 +9,16 @@
 
 ## Ressources
 
+### Symfony Workflow
+
 * https://symfony.com/doc/current/workflow.html
+* https://github.com/symfony/workflow
+* Tutoriel Symfony : Le composant Workflow de symfony - https://www.youtube.com/watch?v=1Iu8evzKmF4
+* Un Workflow de pro avec Symfony 5 ! : https://www.youtube.com/watch?v=GcasBn8iAY4
+
+### Autres
+
 * https://github.com/dunglas/symfony-docker
 * https://github.com/dunglas/symfony-docker/blob/main/docs/makefile.md
 * https://github.com/dunglas/symfony-docker/blob/main/docs/troubleshooting.md
-* Tutoriel Symfony : Le composant Workflow de symfony - https://www.youtube.com/watch?v=1Iu8evzKmF4
-* Un Workflow de pro avec Symfony 5 ! : https://www.youtube.com/watch?v=GcasBn8iAY4
 * https://emojipedia.org/

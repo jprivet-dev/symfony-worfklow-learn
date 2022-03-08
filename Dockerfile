@@ -57,6 +57,10 @@ RUN set -eux; \
 	\
 	apk del .build-deps
 
+RUN apk add --no-cache \
+		graphviz \
+	;
+
 COPY docker/php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
 RUN chmod +x /usr/local/bin/docker-healthcheck
 
