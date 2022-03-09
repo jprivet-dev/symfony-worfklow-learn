@@ -55,22 +55,35 @@ sf: ## List all Symfony commands or pass the parameter "c=" to run a given comma
 cc: c=c:c ## Clear the cache
 cc: sf
 
+## —— Doctrine 💽 ——————————————————————————————————————————————————————————————
+
+migration: ## Run a doctrine migration
+	$(SYMFONY) make:migration
+
 ## —— Workflow ✔️ ———————————————————————————————————————————————————————————————
 
-dump_workflow: ## Generate a visual representation of the workflow as SVG image (example: make dump_workflow name=blog_publishing)
+dump_workflow: ## Generate a visual representation of a workflow as SVG image (example: make dump_workflow name=blog_publishing)
 	@$(eval name ?=)
 	$(SYMFONY) workflow:dump $(name) | $(DOT) -Tsvg -o dump/dump_$(name).svg
 
-dump_workflow_mermaid: ## Generate the mermaid code of the workflow (example: make dump_workflow_mermaid name=blog_publishing)
+dump_workflow_mermaid: ## Generate the mermaid code of a workflow (example: make dump_workflow_mermaid name=blog_publishing)
 	@$(eval name ?=)
 	$(SYMFONY) workflow:dump $(name) --dump-format=mermaid
 	@echo "Go on https://mermaid.live/ or on https://stackedit.io/app"
+
+dump_all: dump_blog_publishing dump_pull_request ## Generate a visual representation of all workflows as SVG image
 
 dump_blog_publishing: ## Generate a visual representation of the blog_publishing workflow as SVG image
 	$(MAKE) dump_workflow name=blog_publishing
 
 dump_blog_publishing_mermaid:## Generate the mermaid code of the blog_publishing workflow
 	$(MAKE) dump_workflow_mermaid name=blog_publishing
+
+dump_pull_request: ## Generate a visual representation of the pull_request workflow as SVG image
+	$(MAKE) dump_workflow name=pull_request
+
+dump_pull_request_mermaid:## Generate the mermaid code of the pull_request workflow
+	$(MAKE) dump_workflow_mermaid name=pull_request
 
 dot: ## Dot command
 	@$(eval c ?=)
