@@ -1,7 +1,7 @@
 framework:
     workflows:
         blog_publishing:
-            type: 'workflow' # or 'state_machine'
+            type: 'state_machine' # or 'workflow'
             audit_trail:
                 enabled: true
             marking_store:
