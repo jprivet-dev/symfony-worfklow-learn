@@ -26,8 +26,9 @@ class WorkflowController extends AbstractController
 //        dump($prWorkflow);
 
         $post = new BlogPost();
-        $postWorkflow = $this->workflows->get($post, 'blog_publishing');
-//        dump($postWorkflow);
+//        $postWorkflow = $this->workflows->get($post, 'blog_publishing');
+        $postWorkflow = $this->workflows->get($post);
+        dump($postWorkflow);
 
         dump(
             '1. publish',
